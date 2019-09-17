@@ -41,9 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	form.addEventListener('submit', (event) => {
 		event.preventDefault();
 		const text = input.value;
-		input.value = '';
-
-		list.appendChild(createLi(text));
+		if (text === '') {
+			alert('Please enter a name');
+		} else {
+			input.value = '';
+			list.appendChild(createLi(text));
+		}
 	});
 
 	list.addEventListener('change', (event) => {

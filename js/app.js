@@ -2,8 +2,19 @@
 const form = document.getElementById('registrar');
 const input = form.querySelector('input');
 const list = document.getElementById('invitedList');
+const mainDiv = list.parentNode;
 
-function createLi(text) {
+const div = document.createElement('div');
+const filterLabel = document.createElement('label');
+const filterCheckbox = document.createElement('input');
+
+filterLabel.textContent = 'Hide those who haven\'t resonded';
+filterCheckbox.type = 'checkbox';
+div.appendChild(filterLabel);
+div.appendChild(filterCheckbox);
+mainDiv.insertBefore(div, list);
+
+function createLi(text) {
 	const name = document.createElement('span');
 	const listItem = document.createElement('Li');
 	const label = document.createElement('label');
@@ -41,6 +52,25 @@ list.addEventListener('change', (event) => {
 		listParent.className = 'responded';
 	} else {
 		listParent.className = '';
+	}
+});
+
+filterCheckbox.addEventListener('change', (event) => {
+	const isChecked = event.target.checked;
+	const listChildren = list.children;
+
+	if (isChecked) {
+		for (let i = 0; i < listChildren.length; i += 1) {
+			if (listChildren[i].className !== 'responded') {
+				listChildren[i].style.display = 'none';
+			} else {
+				listChildren[i].style.display = '';
+			}
+		}
+	} else {
+		for (let i = 0; i < listChildren.length; i += 1) {
+			listChildren[i].style.display = '';
+		}
 	}
 });
 

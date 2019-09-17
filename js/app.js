@@ -7,16 +7,19 @@ function createLi(text) {
 	const listItem = document.createElement('Li');
 	const label = document.createElement('label');
 	const checkbox = document.createElement('input');
-	const button = document.createElement('button');
+	const editButton = document.createElement('button');
+	const removeButton = document.createElement('button');
 
 	listItem.textContent = text;
 	checkbox.type = 'checkbox';
 	label.textContent = 'Confirmed';
-	button.textContent = 'Remove';
+	editButton.textContent = 'Edit';
+	removeButton.textContent = 'Remove';
 
 	label.appendChild(checkbox);
 	listItem.appendChild(label);
-	listItem.appendChild(button);
+	listItem.appendChild(editButton);
+	listItem.appendChild(removeButton);
 	return listItem;
 }
 
@@ -43,6 +46,11 @@ list.addEventListener('click', (event) => {
 	if (event.target.tagName === 'BUTTON') {
 		const button = event.target;
 		const listParent = button.parentNode;
-		listParent.remove();
+
+		if (button.textContent === 'Remove') {
+			listParent.remove();
+		} else if (button.textContent === 'Edit') {
+			
+		}
 	}
 });

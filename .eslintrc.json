@@ -15,5 +15,6 @@
         "sourceType": "module"
     },
     "rules": {
+        "indent": [2, "tab"]
     }
 }
